@@ -4,7 +4,6 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "bucket"{
-    provider = "aws.uw2"
+    provider = aws.uw2
     bucket = "quadball-os-landing"
-    
 }

@@ -1,13 +1,12 @@
-name: "Terraform-Plan"
+name: "Terraform-Apply"
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-
 jobs:
-  terraform-plan:
-    name: "Terraform Plan"
+  terraform:
+    name: "Terraform"
     runs-on: ubuntu-latest
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.ADMIN_AWS_KEY_ID }}
@@ -20,12 +19,19 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
-      
 
       - name: Terraform Init
         id: init
-        run: cd infrastructure && terraform init
-      
-      - name: Terraform plan
+        run: terraform init
+
+      - name: Terraform Plan
         id: plan
-        run: cd infrastructure && terraform plan
+        run: terraform plan 
+
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve
