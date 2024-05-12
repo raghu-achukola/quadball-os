@@ -1,22 +1,22 @@
 
 var possViewer = document.getElementById('possession-viewer')
 var description = document.getElementById('description-header')
+var team1Name = document.getElementById('team-one')
+var team2Name = document.getElementById('team-two')
 var team1Score = document.getElementById('score-one')
 var team2Score = document.getElementById('score-two')
 // var gametime = document.getElementById('gametime')
 // var player = document.getElementById('ytplayer')
 // player.setAttribute('src','https://www.youtube.com/embed/MVdwxyT_gCM?enablejsapi')
 
+var POSSESSIONS = [];
 Number.prototype.pad = function(size) {
     var s = String(this);
     while (s.length < (size || 2)) {s = "0" + s;}
     return s;
 }
 
-let TEAMS = {
-    "HARVARD":0,
-    "UTSA":1
-}
+var TEAMS = {}
 var videotime = 0;
 var switchTime = 0;
 var runningScore = {"-1": [0,0]};
@@ -34,10 +34,14 @@ function displayPossession(possNo,forceSeek){
             if (forceSeek){
                 seek(data.data.film_timestamp)
             }
-            switchTime = data.data.film_timestamp +20
-            console.log(switchTime)
+            switchTime = POSSESSIONS[possNo+1].data.film_timestamp
+            console.log(`Next Possession starts @: ${switchTime}`)
         }
     )
+}
+function displayTeams(team1,team2){
+    team1Name.innerText = team1;
+    team2Name.innerText = team2;
 }
 function setGametime(time){
     let min =  Math.floor(time/60);
@@ -101,7 +105,6 @@ function onYouTubeIframeAPIReady() {
         'start':1,
         'enablejsapi':1,
         'controls':0
-
         },
         events: {
         'onReady': onPlayerReady,
@@ -115,16 +118,18 @@ function onPlayerReady(evt){
     function updateTime() {
         var oldTime = videotime;
         if(player && player.getCurrentTime) {
-        videotime = player.getCurrentTime();
+            videotime = player.getCurrentTime();
         }
         if(videotime !== oldTime) {
-        onProgress(videotime);
+            onProgress(videotime);
         }
     }
     timeupdater = setInterval(updateTime, 100);
 }
-function onPlayerStateChange(evt){console.log('opsc');  
-console.log(player.getCurrentTime());}
+function onPlayerStateChange(evt){
+    console.log('opsc');  
+    console.log(player.getCurrentTime());
+}
 function seek(seconds){
     if(player){
         player.seekTo(seconds, true);
@@ -138,3 +143,20 @@ function onProgress(currentTime) {
     }
 }
   
+
+fetch('/metadata').then(
+    (response) => (response.json())
+).then(
+    (metadata) => {
+        TEAMS[metadata.team_a_name] = 0;
+        TEAMS[metadata.team_b_name] = 1;
+        displayTeams(metadata.team_a_name,metadata.team_b_name);
+    }
+)
+
+fetch('/possessions').then((response)=> (response.json())).then(
+    (data) => {
+        POSSESSIONS = data.possessions
+        console.log(POSSESSIONS)
+    }
+)
