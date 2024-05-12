@@ -11,7 +11,7 @@ TRANSLATION = {
     {'G':'Goal by {0}.',
     'GD':'Goal on the drive by {0}.',
     'GS':'Goal on the shot by {0}.',
-    'OG':'Own Goal.',
+    'OG':'Own Goal by {0}.',
     'E': 'Error by {0}.',
     'ET': 'Turnover penalty on {0}.',
     'EB': 'Blue card on {0} forces turnover.',
