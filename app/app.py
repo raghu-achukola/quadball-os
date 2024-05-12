@@ -64,6 +64,9 @@ with open('data/1/game_metadata.json','r') as f:
 def root(): 
     return render_template('index.html') 
 
+@app.route('/metadata')
+def get_metadata():
+    return GAME_METADATA
 @app.route('/possession-viewer/<int:game_no>')
 def pview(game_no:int): 
     return render_template('possession_viewer.html') 
@@ -77,6 +80,17 @@ def get_possession(poss_no:int):
     print(RESP)
     return RESP
 
+@app.route('/possessions')
+def get_possessions():
+    response  = {
+        'possessions':[
+            {
+                'data': poss,
+                'description': describe_possession(poss)
+            } for poss in POSSESSIONS
+        ]
+    }
+    return response
 
 def describe_possession(poss_desc:dict):
     time_str = convert_time(poss_desc['time'])

@@ -3,10 +3,11 @@ body{
     background-color: black;
     color:bisque;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin:0
 }
 #possession-viewer-container{
     display: grid;
-    grid-template-columns: 70vw 30vw;
+    grid-template-columns: 80vw 20vw;
     grid-template-rows: 80vh 20vh;
     grid-template-areas: "pv nt"
                          "ft nt";
@@ -16,8 +17,8 @@ body{
 #possession-viewer{
     display: grid;
     grid-area: pv;
-    grid-template-columns: 5vw 12.5vw 10vw 15vw 10vw 12.5vw 5vw ;
-    grid-template-rows: 15vh 10vh 20vh 20vh 15vh;
+    grid-template-columns: 7.5vw 10vw 15vw 15vw 15vw 10vw 7.5vw ;
+    grid-template-rows: 10vh 20vh 20vh 20vh 10vh;
     grid-template-areas:
                         "na t1 s1 ti s2 t2 nc"
                         "nd xx xx xx xx xx ne"
