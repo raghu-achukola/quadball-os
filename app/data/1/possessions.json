@@ -1,0 +1,809 @@
+[
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 16,
+    "film_timestamp":208,
+    "result": "TD",
+    "primary": [
+      "HARVARD-LEO FRIED"
+    ],
+    "secondary": [
+      "UTSA-JAVIEN STEWART",
+      "UTSA-MATTHEW BLACKWOOD"
+    ]
+  },
+  {
+    "extras": [
+      {
+        "extra_type": "YELLOW_CARD",
+        "team": "UTSA",
+        "player": "UTSA-ALYSSA VILLALBA"
+      }
+    ],
+    "offense": "HARVARD",
+    "time": 29,
+    "film_timestamp":277,
+    "result": "TB",
+    "primary": [
+      "UTSA-KYLE BRYANT"
+    ],
+    "secondary": [
+      "HARVARD-LEO FRIED"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 58,
+    "film_timestamp":300,
+    "result": "GP",
+    "primary": [
+      "UTSA-MATTHEW BLACKWOOD"
+    ],
+    "secondary": [
+      "UTSA-JAVIEN STEWART"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 87,
+    "film_timestamp":320,
+    "result": "GS",
+    "primary": [
+      "HARVARD-ANDREW STEINBERG"
+    ],
+    "secondary": [
+      "HARVARD-AIDAN HIGGINS"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 114,
+    "film_timestamp":400,
+    "result": "GD",
+    "primary": [
+      "UTSA-JAVIEN STEWART"
+    ],
+    "secondary": [
+      "UTSA-ALYSSA VILLALBA"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 141,
+    "film_timestamp":484,
+    "result": "TB",
+    "primary": [
+      "UTSA-KYLE BRYANT"
+    ],
+    "secondary": [
+      "HARVARD-LEO FRIED"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 168,
+    "film_timestamp":516,
+    "result": "TC",
+    "primary": [
+      "HARVARD-LEO FRIED"
+    ],
+    "secondary": [
+      "UTSA-MATTHEW BLACKWOOD"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 182,
+    "film_timestamp":536,
+    "result": "GD",
+    "primary": [
+      "HARVARD-LEO FRIED"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 229,
+    "film_timestamp":558,
+    "result": "TC",
+    "primary": [
+      "HARVARD-LEO FRIED"
+    ],
+    "secondary": [
+      "UTSA-JAVIEN STEWART"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 240,
+    "film_timestamp":591,
+    "result": "GD",
+    "primary": [
+      "HARVARD-ANDREW STEINBERG"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 272,
+    "film_timestamp":624,
+    "result": "EP",
+    "primary": [
+      "UTSA-MATTHEW BLACKWOOD"
+    ],
+    "secondary": [
+      "UTSA-RILEY MOEHLMANN"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 307,
+    "film_timestamp":645,
+    "result": "GS",
+    "primary": [
+      "HARVARD-ANDREW STEINBERG"
+    ],
+    "secondary": [
+      "HARVARD-LEO FRIED"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 328,
+    "film_timestamp":700,
+    "result": "TL",
+    "primary": [
+      "HARVARD-AIDAN HIGGINS"
+    ],
+    "secondary": [
+      "UTSA-ALYSSA VILLALBA"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 355,
+    "film_timestamp":728,
+    "result": "ED",
+    "primary": [
+      "HARVARD-ANDREW STEINBERG"
+    ],
+    "secondary": [
+      "HARVARD-LEO FRIED"
+    ]
+  },
+  {
+    "extras": [
+      {
+        "extra_type": "YELLOW_CARD",
+        "team": "HARVARD",
+        "player": "HARVARD-LEO FRIED"
+      }
+    ],
+    "offense": "UTSA",
+    "time": 362,
+    
+    "film_timestamp":742,
+    "result": "EY",
+    "primary": [
+      "UTSA-JAVIEN STEWART"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 390,
+    "film_timestamp":956,
+    "result": "EM",
+    "primary": [
+      "HARVARD-ANDREW STEINBERG"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": [
+      {
+        "extra_type": "FORCED_RESET",
+        "team": "HARVARD",
+        "player": "HARVARD-IAN PALK"
+      }
+    ],
+    "offense": "UTSA",
+    "time": 466,
+    "film_timestamp":996,
+    "result": "TBP",
+    "primary": [
+      "HARVARD-DAVID CHEN"
+    ],
+    "secondary": [
+      "UTSA-RILEY MOEHLMANN"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 485,
+    "film_timestamp":1096,
+    "result": "GS",
+    "primary": [
+      "HARVARD-AIDAN HIGGINS"
+    ],
+    "secondary": [
+      "HARVARD-ANDREW STEINBERG"
+    ]
+  },
+  {
+    "extras": [
+      {
+        "extra_type": "BLUE_CARD",
+        "team": "HARVARD",
+        "player": "HARVARD-DAVID CHEN"
+      }
+    ],
+    "offense": "UTSA",
+    "time": 509,
+    "film_timestamp":1110,
+    "result": "TC",
+    "primary": [
+      "HARVARD-LEO FRIED"
+    ],
+    "secondary": [
+      "UTSA-MATTHEW BLACKWOOD"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 540,
+    "film_timestamp":1185,
+    "result": "EY",
+    "primary": [
+      "HARVARD-IAN PALK"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 548,
+    "result": "TL",
+    "primary": [
+      "HARVARD-LEO FRIED"
+    ],
+    "secondary": [
+      "UTSA-DAVID RODRIGUEZ"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 564,
+    "result": "TBP",
+    "primary": [
+      "UTSA-JAVIER TIJERINA"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 576,
+    "result": "GD",
+    "primary": [
+      "UTSA-MATTHEW BLACKWOOD"
+    ],
+    "secondary": [
+      "UTSA-RILEY MOEHLMANN"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 608,
+    "result": "GP",
+    "primary": [
+      "HARVARD-ANA LUIZA NICOLAE"
+    ],
+    "secondary": [
+      "HARVARD-LEO FRIED"
+    ]
+  },
+  {
+    "extras": [
+      {
+        "extra_type": "SECOND_YELLOW_CARD",
+        "team": "HARVARD",
+        "player": "HARVARD-LEO FRIED"
+      },
+      {
+        "extra_type": "YELLOW_CARD",
+        "team": "HARVARD",
+        "player": "HARVARD-DAVID CHEN"
+      },
+      {
+        "extra_type": "FORCED_RESET",
+        "team": "HARVARD",
+        "player": "HARVARD-MAX SEMEGRAN"
+      }
+    ],
+    "offense": "UTSA",
+    "time": 680,
+    "result": "GD",
+    "primary": [
+      "UTSA-JAVIEN STEWART"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 720,
+    "result": "GP",
+    "primary": [
+      "HARVARD-AIDAN HIGGINS"
+    ],
+    "secondary": [
+      "HARVARD-LEO FRIED"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 745,
+    "result": "GD",
+    "primary": [
+      "UTSA-JAVIEN STEWART"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 772,
+    "result": "ED",
+    "primary": [
+      "HARVARD-AIDAN HIGGINS"
+    ],
+    "secondary": [
+      "HARVARD-LEO FRIED"
+    ]
+  },
+  {
+    "extras": [
+      {
+        "extra_type": "BLUE_CARD",
+        "team": "HARVARD",
+        "player": "HARVARD-AIDAN HIGGINS"
+      }
+    ],
+    "offense": "UTSA",
+    "time": 814,
+    "result": "ED",
+    "primary": [
+      "UTSA-DAVID RODRIGUEZ"
+    ],
+    "secondary": [
+      "UTSA-RILEY MOEHLMANN"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 840,
+    "result": "EP",
+    "primary": [
+      "HARVARD-LEO FRIED"
+    ],
+    "secondary": [
+      "HARVARD-ANA LUIZA NICOLAE"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 880,
+    "result": "TBP",
+    "primary": [
+      "HARVARD-DAVID CHEN"
+    ],
+    "secondary": [
+      "UTSA-RILEY MOEHLMANN"
+    ]
+  },
+  {
+    "extras": [
+      {
+        "extra_type": "YELLOW_CARD",
+        "team": "UTSA",
+        "player": "UTSA-JAVIEN STEWART"
+      }
+    ],
+    "offense": "HARVARD",
+    "time": 895,
+    "result": "GP",
+    "primary": [
+      "HARVARD-LEO FRIED"
+    ],
+    "secondary": [
+      "HARVARD-ANDREW STEINBERG"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 925,
+    "result": "GS",
+    "primary": [
+      "UTSA-MATTHEW BLACKWOOD"
+    ],
+    "secondary": [
+      "UTSA-JAVIEN STEWART"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 957,
+    "result": "TB",
+    "primary": [
+      "UTSA-JAVIER TIJERINA"
+    ],
+    "secondary": [
+      "HARVARD-ANDREW STEINBERG"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 985,
+    "result": "TB",
+    "primary": [
+      "HARVARD-MAX SEMEGRAN"
+    ],
+    "secondary": [
+      "UTSA-EMME GOUVEIA"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 1022,
+    "result": "EM",
+    "primary": [
+      "HARVARD-ANDREW STEINBERG"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 1043,
+    "result": "GP",
+    "primary": [
+      "UTSA-EMME GOUVEIA"
+    ],
+    "secondary": [
+      "UTSA-JAVIEN STEWART"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 1075,
+    "result": "TC",
+    "primary": [
+      "UTSA-MATTHEW BLACKWOOD"
+    ],
+    "secondary": [
+      "HARVARD-ANNA BLANCHFIELD"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 1080,
+    "result": "GS",
+    "primary": [
+      "UTSA-MATTHEW BLACKWOOD"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 1101,
+    "result": "GD",
+    "primary": [
+      "HARVARD-LEO FRIED"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 1135,
+    "result": "GD",
+    "primary": [
+      "UTSA-JAVIEN STEWART"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 1161,
+    "result": "GP",
+    "primary": [
+      "HARVARD-LANCE BAE"
+    ],
+    "secondary": [
+      "HARVARD-AIDAN HIGGINS"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 1211,
+    "result": "TL",
+    "primary": [
+      "HARVARD-ANA LUIZA NICOLAE"
+    ],
+    "secondary": [
+      "UTSA-EMME GOUVEIA"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 1225,
+    "result": "GD",
+    "primary": [
+      "HARVARD-ANDREW STEINBERG"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 1256,
+    "result": "GP",
+    "primary": [
+      "UTSA-RILEY MOEHLMANN"
+    ],
+    "secondary": [
+      "UTSA-MATTHEW BLACKWOOD"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 1275,
+    "result": "GD",
+    "primary": [
+      "HARVARD-ANDREW STEINBERG"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 1297,
+    "result": "TC",
+    "primary": [
+      "HARVARD-ANDREW STEINBERG"
+    ],
+    "secondary": [
+      "UTSA-JOEY ALIVAR"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 1313,
+    "result": "TL",
+    "primary": [
+      "UTSA-RILEY MOEHLMANN"
+    ],
+    "secondary": [
+      "HARVARD-LANCE BAE"
+    ]
+  },
+  {
+    "extras": [
+      {
+        "extra_type": "YELLOW_CARD",
+        "team": "HARVARD",
+        "player": "HARVARD-ANA LUIZA NICOLAE"
+      },
+      {
+        "extra_type": "YELLOW_CARD",
+        "team": "HARVARD",
+        "player": "HARVARD-LANCE BAE"
+      }
+    ],
+    "offense": "UTSA",
+    "time": 1378,
+    "result": "GD",
+    "primary": [
+      "UTSA-DAVID RODRIGUEZ"
+    ],
+    "secondary": [
+      "UTSA-ALYSSA VILLALBA"
+    ]
+  },
+  {
+    "extras": [
+      {
+        "extra_type": "YELLOW_CARD",
+        "team": "UTSA",
+        "player": "UTSA-MATTHEW BLACKWOOD"
+      }
+    ],
+    "offense": "HARVARD",
+    "time": 1414,
+    "result": "GD",
+    "primary": [
+      "HARVARD-ANDREW STEINBERG"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": [
+      {
+        "extra_type": "TIMEOUT",
+        "team": "UTSA",
+        "player": null
+      }
+    ],
+    "offense": "UTSA",
+    "time": 1433,
+    "result": "ED",
+    "primary": [
+      "UTSA-ALYSSA VILLALBA"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 1458,
+    "result": "GP",
+    "primary": [
+      "HARVARD-RAINA HOFSTEDE"
+    ],
+    "secondary": [
+      "HARVARD-ANA LUIZA NICOLAE"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 1463,
+    "result": "TB",
+    "primary": [
+      "HARVARD-DAVID CHEN"
+    ],
+    "secondary": [
+      "UTSA-DAVID RODRIGUEZ"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 1478,
+    "result": "TL",
+    "primary": [
+      "UTSA-DAVID RODRIGUEZ"
+    ],
+    "secondary": [
+      "HARVARD-LANCE BAE"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 1494,
+    "result": "GD",
+    "primary": [
+      "UTSA-MATTHEW BLACKWOOD"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 1528,
+    "result": "GD",
+    "primary": [
+      "HARVARD-ANDREW STEINBERG"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 1543,
+    "result": "GD",
+    "primary": [
+      "UTSA-ALYSSA VILLALBA"
+    ],
+    "secondary": [
+      "UTSA-MATTHEW BLACKWOOD"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 1570,
+    "result": "TL",
+    "primary": [
+      "UTSA-RILEY MOEHLMANN"
+    ],
+    "secondary": [
+      "HARVARD-ANDREW STEINBERG"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 1574,
+    "result": "TB",
+    "primary": [
+      "HARVARD-DAVID CHEN"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": null,
+    "offense": "HARVARD",
+    "time": 1623,
+    "result": "TL",
+    "primary": [
+      "UTSA-RILEY MOEHLMANN"
+    ],
+    "secondary": [
+      "HARVARD-ANA LUIZA NICOLAE"
+    ]
+  },
+  {
+    "extras": null,
+    "offense": "UTSA",
+    "time": 1649,
+    "result": "GS",
+    "primary": [
+      "UTSA-RILEY MOEHLMANN"
+    ],
+    "secondary": null
+  },
+  {
+    "extras": [
+      {
+        "extra_type": "YELLOW_CARD",
+        "team": "UTSA",
+        "player": "UTSA-DAVID RODRIGUEZ"
+      }
+    ],
+    "offense": "HARVARD",
+    "time": 1669,
+    "result": "GP",
+    "primary": [
+      "HARVARD-LEO FRIED"
+    ],
+    "secondary": [
+      "HARVARD-ANDREW STEINBERG"
+    ]
+  }
+]
