@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>grafic desine is my pashun-possession viewer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+  <div id = possession-viewer-container>
+  <div id = 'possession-viewer' class="cntr" currPoss=-1>
+    <div id = 'description-header'>
+      Description
+    </div>
+    <div id = 'score-one'>0</div>
+    <div id = 'score-two'>0</div>
+    <div id = 'gametime'></div>
+    <div id = 'left-button'>
+      <button>,,</button>
+    </div>
+    <div id = display>
+    </div>
+    
+    <div id = 'right-button'>
+      <button>""</button>
+    </div>
+  </div>
+  <div id = 'notes-taker' class = "cntr">
+    <div class = 'notes-type' display="flex" flex-driection="row">
+      <div id = 'bug-note'color = 'red' >Bug</div>
+      <div id = 'note-note' color = 'yellow'>Note</div>
+      <div id = 'field-note' color = 'green'>Field</div>
+    </div>
+  </div>
+  </div>
+  <script src = "https://www.youtube.com/iframe_api"></script>  
+  <script src="{{ url_for('static', filename='in.js') }}"></script>
+  </body>
+</html>
+
