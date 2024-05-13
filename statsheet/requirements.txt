@@ -1,0 +1,4 @@
+openpyxl==3.0.9
+pandas==1.4.2
+deepdiff==6.3.0
+fuzzywuzzy==0.18.0
