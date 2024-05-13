@@ -1,0 +1,21 @@
+name: "pr-workflow"
+
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  deploy-packages:
+    name: "Deploy Packages"
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.ADMIN_AWS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.ADMIN_AWS_SECRET_KEY }}
+      AWS_REGION: us-west-2
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Package statsheet
+        run: bash shell/package-lambda-layer.sh statsheet-prtest statsheet
