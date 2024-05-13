@@ -21,4 +21,4 @@ jobs:
         run: bash shell/package-lambda-layer.sh statsheet statsheet
       
       - name: Publish Lambda Layer
-        run: aws lambda publish-layer-version --layer-name statsheet --content S3Bucket=quadball-os-packages,S3Key=statsheet
+        run: aws lambda publish-layer-version --layer-name statsheet --content S3Bucket=quadball-os-packages,S3Key=statsheet.zip
