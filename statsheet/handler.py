@@ -1,11 +1,14 @@
 from openpyxl import load_workbook
 from statsheet.gen_possessions import * 
 from statsheet.statsheet import * 
+from io import BytesIO
 
 
 class StatsheetHandler:
-    def __init__(self, file_location:str, *, verify_upstream = False, read_only = True):
-        self.wb = load_workbook(file_location, read_only=read_only)
+    # TODO: currently basic functionality of handler (offset) doesn't work in r/o mode
+    # Fix plz
+    def __init__(self, file_stream:BytesIO, *, verify_upstream = False, read_only = False):
+        self.wb = load_workbook(file_stream, read_only=read_only)
         self._validate_wb_structure()
         self._read_sheets()
 
@@ -38,7 +41,7 @@ class StatsheetHandler:
                 break
         return StatSheetMetadata(**metadata_params)
 
-    def _read_possessions(self, starter_cell = (7,1)) -> list[StatSheetPossession]: 
+    def _read_possessions(self, starter_cell = (6,1)) -> list[StatSheetPossession]: 
         possession_list = []
         self.occurrences = {}
         possessions = self.possession_sheet
