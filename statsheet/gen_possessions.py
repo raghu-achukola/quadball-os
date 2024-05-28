@@ -8,7 +8,7 @@ from typing import Generator
 from enum import Enum
 import json
 
-from statsheet import *
+from statsheet.statsheet import *
 
 
 
