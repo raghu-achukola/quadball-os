@@ -10,6 +10,9 @@ class StatsheetHandler:
         self._read_sheets()
 
         self.metadata = self._read_metadata()
+        self.team_name_lookup = {'A':self.metadata.team_a_name,'B':self.metadata.team_b_name}
+        self.team_id_lookup = {'A':self.metadata.team_a_id,'B':self.metadata.team_b_id}
+
         self.possessions = self._read_possessions()
         self.rosters = self._read_rosters()
         print(self.occurrences)
@@ -89,26 +92,30 @@ class StatsheetHandler:
                 print(f'PLAYER NOT FOUND IN ROSTER, {player}')
 
     def get_hydrated(self) -> list: 
-        team_lookup = {'A':self.metadata.team_a_name,'B':self.metadata.team_b_name}
         hydrated = [possession.copy() for possession in self.possessions]
         for poss in hydrated:
             
-            poss.offense = team_lookup[poss.offense]
+            poss.offense = self.team_name_lookup[poss.offense]
             if poss.primary:
                 for i,pl in enumerate(poss.primary):
                     team, player = pl
-                    poss.primary[i] = f"{team_lookup[team]}-{self.rosters[pl]['name']}"
+                    poss.primary[i] = f"{self.team_name_lookup[team]}-{self.rosters[pl]['name']}"
             if poss.secondary:
                 for i,pl in enumerate(poss.secondary):
                     team, player = pl
-                    poss.secondary[i] = f"{team_lookup[team]}-{self.rosters[pl]['name']}"
+                    poss.secondary[i] = f"{self.team_name_lookup[team]}-{self.rosters[pl]['name']}"
             if poss.extras:
                 for i,ex in enumerate(poss.extras):
                     if ex.player:
                         team,number = ex.player
-                        poss.extras[i].player = f"{team_lookup[team]}-{self.rosters[ex.player]['name']}"
+                        poss.extras[i].player = f"{self.team_name_lookup[team]}-{self.rosters[ex.player]['name']}"
                     if ex.team:
-                        poss.extras[i].team = f"{team_lookup[team]}"
+                        poss.extras[i].team = f"{self.team_name_lookup[team]}"
                     
         return hydrated
     
+    def get_translator_by_name(self)-> dict:
+        return self.rosters.by_name | self.team_name_lookup 
+    
+    def get_translator_by_id(self)-> dict:
+        return self.rosters.by_id | self.team_id_lookup 

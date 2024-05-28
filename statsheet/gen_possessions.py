@@ -77,7 +77,7 @@ def get_roster(roster_sheet:Worksheet):
 
 
 
-def main(location:str, out:str, translate_roster:str = None):
+def main(location:str, out_folder:str, translate_roster:str = None):
     wb = load_workbook(location)
     possessions = wb['POSSESSIONS']
     rosters = wb['ROSTERS']
@@ -101,8 +101,8 @@ def main(location:str, out:str, translate_roster:str = None):
             poss_list.append(possession.translate(translator))
         else:
             poss_list.append(possession.to_dict())
-    if out:
-        with open(out,'w') as f:
+    if out_folder:
+        with open(f'{out_folder}/_possessions.json','w') as f:
             # print(possessions.to_json())
             f.write(json.dumps(poss_list))
     else:
@@ -123,10 +123,10 @@ if __name__ == '__main__':
     parser.add_argument('--translate-roster')
     args = parser.parse_args()
     tr = args.translate_roster
-    out = args.out
+    out_folder = args.out_folder
     if tr:
         if tr.lower().strip() not in ('name', 'id'):
             exit()
         else:
             tr = tr.lower().strip()
-    main(args.statsheet_location, out, tr)
+    main(args.statsheet_location, out_folder, tr)
