@@ -2,6 +2,7 @@ from enum import Enum
 import re
 import json
 from dataclasses import dataclass
+from functools import reduce
 
 
 def enumify(cls):
@@ -136,12 +137,16 @@ class ExtraKind(Enum):
 
 
 class StatSheetPossession:
-    def __init__(self,extras:list[Extra],offense:str,time:int,result:PossessionResult, primary:list, secondary:list):
+    def __init__(self, film_time:str,
+                extras:list[Extra],offense:str,time:int,
+                result:PossessionResult, primary:list, secondary:list):
+        self.film_time = film_time
         self.extras,self.offense,self.time,self.result,self.primary,self.secondary = extras,offense,time,result,primary,secondary
         self.defense = 'A' if offense == 'B' else 'B'
     
     def copy(self):
         return StatSheetPossession(
+            film_time = self.film_time,
             extras = [ex.copy() for ex in self.extras] if self.extras else None,
             offense=self.offense,
             time = self.time,
@@ -166,18 +171,26 @@ class StatSheetPossession:
             extra_list.append(ex)
         return extra_list
     
+    def parse_filmtimestring(fts:str)-> int:
+        if fts:
+            assert fts.isnumeric() and len(fts) in (4,6) , f'Filme Timestring {fts} is improperly formatted'
+            return reduce(lambda x,y: x*60+y, [int(fts[i:i+2]) for i in range(0,len(fts),2) ])
+        return None
     def parse_timestring(timestring:str) -> int:
-        assert timestring.isnumeric() and len(timestring) == 4, f'Timestring {timestring} is improperly formatted'
-        return int(timestring[:2])*60 + int(timestring[2:])
+        if timestring:
+            assert timestring.isnumeric() and len(timestring) == 4, f'Timestring {timestring} is improperly formatted'
+            return int(timestring[:2])*60 + int(timestring[2:])
+        return None
 
     def get_players(player_cell:str, team:str)-> list[tuple]:
         return [(team,player_num) for player_num in player_cell.split(',')] if player_cell else None
 
 
-    def from_values(extras:str, offense:str, time_string:str, result:str, primary:str, secondary:str): 
+    def from_values(_:str, _2:str, film_timestring:str, extras:str, offense:str, time_string:str, result:str, primary:str, secondary:str): 
         defense = 'A' if offense == 'B' else 'B'
         extra_list = StatSheetPossession.parse_extras(extras,offense=offense,defense=defense) if extras else None
         gametime = StatSheetPossession.parse_timestring(time_string) if time_string else None
+        film_time = StatSheetPossession.parse_filmtimestring(film_timestring) if film_timestring else None
         poss_result = PossessionResult[result]
         if result in ('RCA','CA','OCA','2CA'):
             primary_team ='A'
@@ -197,6 +210,7 @@ class StatSheetPossession:
         primary_list = StatSheetPossession.get_players(primary,primary_team)
         secondary_list = StatSheetPossession.get_players(secondary,secondary_team)
         return StatSheetPossession(
+            film_time=film_time,
             extras=extra_list,
             offense=offense,
             time=gametime,
@@ -204,16 +218,30 @@ class StatSheetPossession:
             primary=primary_list,
             secondary=secondary_list
         )
+    def translate(self,roster:dict):
+        return {
+            'film_timestamp':self.film_time,
+            'extras': None if self.extras is None else [extra.to_dict() for extra in self.extras],
+            'offense': roster[self.offense] ,
+            'time': self.time,
+            'result': None if self.result is None else self.result.name,
+            'primary': None if self.primary is None else [roster[player] if type(player)== tuple else player  for player in self.primary],
+            'secondary':None if self.secondary is None else [roster[player] if type(player) == tuple else player for player in self.secondary]
+       
 
-    def to_json(self, **kwargs): 
-        return json.dumps({
+        }
+    def to_dict(self):
+        return {
+            'film_timestamp':self.film_time,
             'extras': None if self.extras is None else [extra.to_dict() for extra in self.extras],
             'offense': self.offense ,
             'time': self.time,
             'result': None if self.result is None else self.result.name,
             'primary': None if self.primary is None else [list(player) if type(player)== tuple else player  for player in self.primary],
             'secondary':None if self.secondary is None else [list(player) if type(player) == tuple else player for player in self.secondary]
-        }, **kwargs)
+        }
+    def to_json(self, **kwargs): 
+        return json.dumps(self.to_dict(), **kwargs)
         
 
 @dataclass
