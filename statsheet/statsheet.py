@@ -267,22 +267,23 @@ class StatSheetRoster:
 
         for key, values in player_dict.items():
             team,num = key
+            new_key = (team, str(num))
             name = values['name']
             id = values['id']
-            new.by_name[key] = name
-            new.by_id[key] = id
+            new.by_name[new_key] = name
+            new.by_id[new_key] = id
         return new
 
     def __getitem__(self, val):
         if type(val) == tuple:
             #TODO: oof
             team,pl = val
-            return self.player_dict[(team,int(pl))]
+            return self.player_dict[(team,str(pl))]
         elif type(val) == str:
             #TODO: replace with regex match
             if '-' in val:
                 team, num = val.split('-')
-                return self.__getitem__((team,int(num)))
+                return self.__getitem__((team,str(num)))
             elif val in ('A','B'):
                 return {
                     jersey: value for (team,jersey), value in self.player_dict.items()
