@@ -260,7 +260,7 @@ class StatSheetRoster:
 
     def from_dict(player_dict): 
         new = StatSheetRoster()
-        new.player_dict = player_dict
+        new.player_dict = player_dict.copy()
         new.by_name = {}
         new.by_id = {}
         new.by_team = {}
