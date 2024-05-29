@@ -270,6 +270,7 @@ class StatSheetRoster:
             new_key = (team, str(num))
             name = values['name']
             id = values['id']
+            new.player_dict[new_key] = values
             new.by_name[new_key] = name
             new.by_id[new_key] = id
         return new
