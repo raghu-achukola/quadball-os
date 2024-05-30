@@ -1,8 +1,5 @@
-
-
 # Import flask functions
 from flask import Flask, render_template,request
-import pandas as pd
 import json
 app = Flask(__name__)
 
@@ -55,33 +52,45 @@ TRANSLATION = {
     }
 }
 
-with open('data/1/possessions.json','r') as f:
-    POSSESSIONS = json.loads(f.read())
-with open('data/1/game_metadata.json','r') as f: 
-    GAME_METADATA = json.loads(f.read())
+global POSSESSIONS,GAME_METADATA
+
+
+def get_curr_possesions():
+    return POSSESSIONS
+def get_curr_metadata():
+    return GAME_METADATA
+
+
 
 @app.route('/')
 def root(): 
     return render_template('index.html') 
 
-@app.route('/metadata')
-def get_metadata():
+
+
+@app.route('/metadata/<int:game_no>')
+def get_metadata(game_no):
+    global GAME_METADATA
+    with open(f'data/{game_no}/game_metadata.json','r') as f: 
+        GAME_METADATA = json.loads(f.read())
+    
     return GAME_METADATA
+
 @app.route('/possession-viewer/<int:game_no>')
 def pview(game_no:int): 
-    return render_template('possession_viewer.html') 
-# If we return json its like an API 
-@app.route('/possession/<int:poss_no>')
-def get_possession(poss_no:int):
-    RESP =  {
-        'data': POSSESSIONS[poss_no],
-        'description': describe_possession(POSSESSIONS[poss_no])
-    }
-    print(RESP)
-    return RESP
+    return render_template('possession_viewer.html',game_no = game_no) 
 
-@app.route('/possessions')
-def get_possessions():
+
+
+
+@app.route('/possessions/<int:game_no>')
+def get_possessions(game_no:int):
+    global POSSESSIONS
+
+    with open(f'data/{game_no}/possessions.json','r') as f:
+        POSSESSIONS = json.loads(f.read())
+
+
     response  = {
         'possessions':[
             {
@@ -91,6 +100,17 @@ def get_possessions():
         ]
     }
     return response
+
+# If we return json its like an API 
+@app.route('/possession/<int:poss_no>')
+def get_possession(poss_no:int):
+    cp = get_curr_possesions()
+    RESP =  {
+        'data': cp[poss_no],
+        'description': describe_possession(cp[poss_no])
+    }
+    print(RESP)
+    return RESP
 
 def describe_possession(poss_desc:dict):
     time_str = convert_time(poss_desc['time'])
@@ -102,7 +122,7 @@ def describe_possession(poss_desc:dict):
 
 
 def convert_time(gtime:int):
-    return "({:02d}:{:02d})".format(*divmod(gtime,60))
+    return "" if gtime is None else "({:02d}:{:02d})".format(*divmod(gtime,60)) 
 # If name is main, run flask 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug = True)

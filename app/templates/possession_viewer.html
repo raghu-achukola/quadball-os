@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   </head>
   <body>
+  <div id = 'gameNumber'>{{game_no}}</div>
   <div id = possession-viewer-container>
   <div id = 'possession-viewer' class="cntr" currPoss=-1>
     <div id = 'description-header'>
       Description
     </div>
+    <div id = 'possession-number'></div>
     <div id = 'team-one'></div>
     <div id = 'team-two'></div>
     <div id = 'score-one'>0</div>

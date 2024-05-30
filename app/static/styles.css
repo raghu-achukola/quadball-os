@@ -20,7 +20,7 @@ body{
     grid-template-columns: 7.5vw 10vw 15vw 15vw 15vw 10vw 7.5vw ;
     grid-template-rows: 10vh 20vh 20vh 20vh 10vh;
     grid-template-areas:
-                        "na t1 s1 ti s2 t2 nc"
+                        "pn t1 s1 ti s2 t2 nc"
                         "nd xx xx xx xx xx ne"
                         "lb xx xx xx xx xx rb"
                         "nf xx xx xx xx xx ng"
@@ -42,6 +42,7 @@ body{
 #team-two{grid-area: t2;}
 #score-one{grid-area:s1;}
 #score-two{grid-area:s2;}
+#possession-number{grid-area:pn; font-size: 0.75em;}
 #gametime{grid-area: ti;}
 #display{grid-area: xx; width: 100% ; height:100%;}
 #notes-taker{
