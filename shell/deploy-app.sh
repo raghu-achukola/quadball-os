@@ -1,4 +1,5 @@
 aws s3 cp $WEBSERVER_PEM_LOCATION pemfile.pem
+chmod 400 pemfile.pem
 cd app
 # todo -> this only works while we only add/modify files, we need to handle deletes
 # replace folder (what about the venv we have there?) 
