@@ -15,7 +15,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.ADMIN_AWS_SECRET_KEY }}
       AWS_REGION: us-west-2
       WEBSERVER_PEM_LOCATION: ${{ secrets.WEBSERVER_PEM_LOCATION }}
-      WEBSERVER_EC2_HOST: ${{ WEBSERVER_EC2_HOST }}
+      WEBSERVER_EC2_HOST: ${{ secrets.WEBSERVER_EC2_HOST }}
 
     steps:
       - name: Checkout
