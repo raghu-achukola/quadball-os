@@ -5,7 +5,7 @@ import boto3
 import os
 
 BUCKET = os.environ['QUADBALL_POSSESSIONS_BUCKET']
-PATH = 'possessions/hydrated/'
+PREFIX = 'possessions/hydrated'
 app = Flask(__name__)
 s3 = boto3.client('s3')
 
@@ -58,11 +58,11 @@ TRANSLATION = {
     }
 }
 
-global POSSESSIONS,GAME_METADATA
+global POSSESSIONS,GAME_METADATA 
 
-
+POSSESSIONS = {}
 def get_curr_possesions():
-    return POSSESSIONS
+    return POSSESSIONS 
 def get_curr_metadata():
     return GAME_METADATA
 
@@ -91,7 +91,7 @@ def pview(game_no:int):
 
 
 def s3_get_possessions(game_no:int):
-    resp = s3.get_object(Bucket = BUCKET, path = f'PATH/{game_no}.json')
+    resp = s3.get_object(Bucket = BUCKET, Key = f'{PREFIX}/{game_no}.json')
     json_str = resp['Body'].read().decode('utf-8')
     return json.loads(json_str)
 
@@ -112,9 +112,11 @@ def get_possessions(game_no:int):
     return response
 
 # If we return json its like an API 
-@app.route('/possession/<int:poss_no>')
-def get_possession(poss_no:int):
+@app.route('/possession/<int:game_no>/<int:poss_no>')
+def get_possession(game_no:int,poss_no:int):
     cp = get_curr_possesions()
+    if not cp: 
+        cp = get_possessions(game_no)
     RESP =  {
         'data': cp[poss_no],
         'description': describe_possession(cp[poss_no])
