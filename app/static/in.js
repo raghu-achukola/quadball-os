@@ -125,6 +125,7 @@ function onYouTubeIframeAPIReady() {
         'onStateChange': onPlayerStateChange
         }
     });
+    
     fetch(`/metadata/${gameNo}`).then(
         (response) => (response.json())
     ).then(
@@ -152,6 +153,7 @@ function onPlayerReady(evt){
         }
     }
     timeupdater = setInterval(updateTime, 100);
+    document.getElementById('display').setAttribute('min-width', '100%')
 }
 function onPlayerStateChange(evt){
     console.log('opsc');  
