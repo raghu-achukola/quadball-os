@@ -3,9 +3,10 @@ from flask import Flask, render_template,request
 import json
 import boto3
 import os
-
+import re 
 BUCKET = os.environ['QUADBALL_POSSESSIONS_BUCKET']
-PREFIX = 'possessions/hydrated'
+POSSESSION_PREFIX = 'possessions/hydrated'
+METADATA_PREFIX = 'game-metadata'
 app = Flask(__name__)
 s3 = boto3.client('s3')
 
@@ -66,6 +67,16 @@ def get_curr_possesions():
 def get_curr_metadata():
     return GAME_METADATA
 
+def s3_get_possessions(game_no:int):
+    resp = s3.get_object(Bucket = BUCKET, Key = f'{POSSESSION_PREFIX}/{game_no}.json')
+    json_str = resp['Body'].read().decode('utf-8')
+    return json.loads(json_str)
+def s3_get_metadata(game_no:int):
+    resp = s3.get_object(Bucket = BUCKET, Key = f'{METADATA_PREFIX}/{game_no}.json')
+    json_str = resp['Body'].read().decode('utf-8')
+    metadata =  json.loads(json_str)
+    metadata |= determine_film_source(metadata.get('film_links',''))
+    return metadata
 
 
 @app.route('/')
@@ -77,23 +88,26 @@ def root():
 @app.route('/metadata/<int:game_no>')
 def get_metadata(game_no):
     global GAME_METADATA
-    with open(f'data/{game_no}/game_metadata.json','r') as f: 
-        GAME_METADATA = json.loads(f.read())
+    GAME_METADATA = s3_get_metadata(game_no)
     
     return GAME_METADATA
 
+def determine_film_source(film_link:str) -> dict:
+    info = {}
+    youtube =  link_is_youtube(film_link)
+    if film_link and youtube:
+        info['video_site'], info['film_id'] = youtube.groups()
+    return info
 
-
+def link_is_youtube(film_link:str): 
+    YOUTUBE_PATTERN = r'.*(youtube)[.]com\/watch\?v\=([A-z0-9]+)'
+    return re.match(YOUTUBE_PATTERN,film_link)
 
 @app.route('/possession-viewer/<int:game_no>')
 def pview(game_no:int): 
     return render_template('possession_viewer.html',game_no = game_no) 
 
 
-def s3_get_possessions(game_no:int):
-    resp = s3.get_object(Bucket = BUCKET, Key = f'{PREFIX}/{game_no}.json')
-    json_str = resp['Body'].read().decode('utf-8')
-    return json.loads(json_str)
 
 @app.route('/possessions/<int:game_no>')
 def get_possessions(game_no:int):
