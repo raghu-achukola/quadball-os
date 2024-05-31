@@ -123,6 +123,10 @@ class PossessionResult(Enum):
     TBP = 21
     TL = 22
 
+    RCA = 23
+    RCB = 24
+    CA = 25
+    CB = 26
                 
 
 class ExtraKind(Enum):
