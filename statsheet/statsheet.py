@@ -123,6 +123,10 @@ class PossessionResult(Enum):
     TBP = 21
     TL = 22
 
+    RCA = 23
+    RCB = 24
+    CA = 25
+    CB = 26
                 
 
 class ExtraKind(Enum):
@@ -191,19 +195,20 @@ class StatSheetPossession:
         extra_list = StatSheetPossession.parse_extras(extras,offense=offense,defense=defense) if extras else None
         gametime = StatSheetPossession.parse_timestring(time_string) if time_string else None
         film_time = StatSheetPossession.parse_filmtimestring(film_timestring) if film_timestring else None
-        poss_result = PossessionResult[result]
-        if result in ('RCA','CA','OCA','2CA'):
+        result_u = result.upper()
+        poss_result = PossessionResult[]
+        if result_u in ('RCA','CA','OCA','2CA'):
             primary_team ='A'
             secondary_team = None
-        elif result in ('RCB','CB','OCB','2CB'):
+        elif result_u in ('RCB','CB','OCB','2CB'):
             primary_team ='B'
             secondary_team = None
-        elif result == 'OG':
+        elif result_u == 'OG':
             primary_team = offense
             secondary_team = None
-        elif result.startswith('G') or result.startswith('E'):
+        elif result_u.startswith('G') or result_u.startswith('E'):
             primary_team, secondary_team = offense,offense
-        elif result.startswith('T'):
+        elif result_u.startswith('T'):
             primary_team,secondary_team = defense,offense
         else:
             pass
