@@ -196,7 +196,7 @@ class StatSheetPossession:
         gametime = StatSheetPossession.parse_timestring(time_string) if time_string else None
         film_time = StatSheetPossession.parse_filmtimestring(film_timestring) if film_timestring else None
         result_u = result.upper()
-        poss_result = PossessionResult[]
+        poss_result = PossessionResult[result_u]
         if result_u in ('RCA','CA','OCA','2CA'):
             primary_team ='A'
             secondary_team = None
