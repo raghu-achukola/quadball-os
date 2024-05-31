@@ -1,7 +1,13 @@
 # Import flask functions
 from flask import Flask, render_template,request
 import json
+import boto3
+import os
+
+BUCKET = os.environ['QUADBALL_POSSESSIONS_BUCKET']
+PREFIX = 'possessions/hydrated'
 app = Flask(__name__)
+s3 = boto3.client('s3')
 
 TRANSLATION = {
     1:
@@ -52,11 +58,11 @@ TRANSLATION = {
     }
 }
 
-global POSSESSIONS,GAME_METADATA
+global POSSESSIONS,GAME_METADATA 
 
-
+POSSESSIONS = {}
 def get_curr_possesions():
-    return POSSESSIONS
+    return POSSESSIONS 
 def get_curr_metadata():
     return GAME_METADATA
 
@@ -76,20 +82,24 @@ def get_metadata(game_no):
     
     return GAME_METADATA
 
+
+
+
 @app.route('/possession-viewer/<int:game_no>')
 def pview(game_no:int): 
     return render_template('possession_viewer.html',game_no = game_no) 
 
 
-
+def s3_get_possessions(game_no:int):
+    resp = s3.get_object(Bucket = BUCKET, Key = f'{PREFIX}/{game_no}.json')
+    json_str = resp['Body'].read().decode('utf-8')
+    return json.loads(json_str)
 
 @app.route('/possessions/<int:game_no>')
 def get_possessions(game_no:int):
     global POSSESSIONS
 
-    with open(f'data/{game_no}/possessions.json','r') as f:
-        POSSESSIONS = json.loads(f.read())
-
+    POSSESSIONS = s3_get_possessions(game_no=game_no)
 
     response  = {
         'possessions':[
@@ -102,9 +112,11 @@ def get_possessions(game_no:int):
     return response
 
 # If we return json its like an API 
-@app.route('/possession/<int:poss_no>')
-def get_possession(poss_no:int):
+@app.route('/possession/<int:game_no>/<int:poss_no>')
+def get_possession(game_no:int,poss_no:int):
     cp = get_curr_possesions()
+    if not cp: 
+        cp = get_possessions(game_no)
     RESP =  {
         'data': cp[poss_no],
         'description': describe_possession(cp[poss_no])

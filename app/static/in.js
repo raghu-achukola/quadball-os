@@ -26,7 +26,7 @@ var switchTime = 0;
 var runningScore = {"-1": [0,0]};
 var player;
 function displayPossession(possNo,forceSeek){
-    fetch(`/possession/${possNo}`).then(
+    fetch(`/possession/${gameNo}/${possNo}`).then(
         (response) => (response.json())
     ).then (     
         (data) => {
