@@ -100,7 +100,7 @@ def determine_film_source(film_link:str) -> dict:
     return info
 
 def link_is_youtube(film_link:str): 
-    YOUTUBE_PATTERN = r'.*(youtube)[.]com\/watch\?v\=([A-z0-9]+)'
+    YOUTUBE_PATTERN = r'.*(youtube)[.]com\/watch\?v\=([A-z0-9\-\_]+)'
     return re.match(YOUTUBE_PATTERN,film_link)
 
 @app.route('/possession-viewer/<int:game_no>')
