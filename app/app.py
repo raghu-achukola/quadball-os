@@ -59,18 +59,14 @@ TRANSLATION = {
     }
 }
 
-global POSSESSIONS,GAME_METADATA 
 
-POSSESSIONS = {}
-def get_curr_possesions():
-    return POSSESSIONS 
-def get_curr_metadata():
-    return GAME_METADATA
 
 def s3_get_possessions(game_no:int):
     resp = s3.get_object(Bucket = BUCKET, Key = f'{POSSESSION_PREFIX}/{game_no}.json')
     json_str = resp['Body'].read().decode('utf-8')
     return json.loads(json_str)
+
+@app.route('/metadata/<int:game_no>')
 def s3_get_metadata(game_no:int):
     resp = s3.get_object(Bucket = BUCKET, Key = f'{METADATA_PREFIX}/{game_no}.json')
     json_str = resp['Body'].read().decode('utf-8')
@@ -83,14 +79,6 @@ def s3_get_metadata(game_no:int):
 def root(): 
     return render_template('index.html') 
 
-
-
-@app.route('/metadata/<int:game_no>')
-def get_metadata(game_no):
-    global GAME_METADATA
-    GAME_METADATA = s3_get_metadata(game_no)
-    
-    return GAME_METADATA
 
 def determine_film_source(film_link:str) -> dict:
     info = {}
@@ -111,7 +99,6 @@ def pview(game_no:int):
 
 @app.route('/possessions/<int:game_no>')
 def get_possessions(game_no:int):
-    global POSSESSIONS
 
     POSSESSIONS = s3_get_possessions(game_no=game_no)
 
@@ -125,18 +112,18 @@ def get_possessions(game_no:int):
     }
     return response
 
-# If we return json its like an API 
-@app.route('/possession/<int:game_no>/<int:poss_no>')
-def get_possession(game_no:int,poss_no:int):
-    cp = get_curr_possesions()
-    if not cp: 
-        cp = get_possessions(game_no)
-    RESP =  {
-        'data': cp[poss_no],
-        'description': describe_possession(cp[poss_no])
-    }
-    print(RESP)
-    return RESP
+# # If we return json its like an API 
+# @app.route('/possession/<int:game_no>/<int:poss_no>')
+# def get_possession(game_no:int,poss_no:int):
+#     cp = get_curr_possesions()
+#     if not cp: 
+#         cp = get_possessions(game_no)
+#     RESP =  {
+#         'data': cp[poss_no],
+#         'description': describe_possession(cp[poss_no])
+#     }
+#     print(RESP)
+#     return RESP
 
 def describe_possession(poss_desc:dict):
     time_str = convert_time(poss_desc['time'])

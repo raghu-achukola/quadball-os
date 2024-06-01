@@ -26,22 +26,20 @@ var switchTime = 0;
 var runningScore = {"-1": [0,0]};
 var player;
 function displayPossession(possNo,forceSeek){
-    fetch(`/possession/${gameNo}/${possNo}`).then(
-        (response) => (response.json())
-    ).then (     
-        (data) => {
-            console.log(data);
-            description.innerHTML = data.description
-            updateScore(possNo,data)
-            console.log(runningScore)
-            setGametime(data.data.time)
-            if (forceSeek){
-                seek(data.data.film_timestamp)
-            }
-            switchTime = POSSESSIONS[possNo+1].data.film_timestamp
-            console.log(`Next Possession starts @: ${switchTime}`)
-        }
-    )
+    console.log(`displayPossession called with possNo ${possNo}`)
+
+    data = POSSESSIONS[possNo]
+    console.log(data);
+    description.innerHTML = data.description
+    updateScore(possNo,data)
+    console.log(runningScore)
+    setGametime(data.data.time)
+    if (forceSeek){
+        seek(data.data.film_timestamp)
+    }
+    switchTime = POSSESSIONS[possNo+1].data.film_timestamp
+    console.log(`Next Possession starts @: ${switchTime}`)
+
 }
 function displayTeams(team1,team2){
     team1Name.innerText = team1;
@@ -84,25 +82,6 @@ function shiftPossession(delta,forceSeek = false){
 
 }
 
-// Button Listeners
-let leftButton = document.getElementById('left-button')
-leftButton.addEventListener('click',(ev) => shiftPossession(-1,true))
-let rightButton = document.getElementById('right-button')
-rightButton.addEventListener('click',(ev) => shiftPossession(1,true))
-
-
-fetch(`/possessions/${gameNo}`).then((response)=> (response.json())).then(
-    (data) => {
-        POSSESSIONS = data.possessions;
-        console.log(POSSESSIONS)
-    }
-)
-
-
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 
 // 3. This function creates an <iframe> (and YouTube player)
@@ -140,6 +119,7 @@ function onYouTubeIframeAPIReady() {
     )
 }
 function onPlayerReady(evt){
+    console.log(evt)
     player.loadVideoById(filmID)
     console.log(player.getCurrentTime())
     console.log('opr');
@@ -157,6 +137,7 @@ function onPlayerReady(evt){
 }
 function onPlayerStateChange(evt){
     console.log('opsc');  
+    console.log(evt)
     console.log(player.getCurrentTime());
 }
 function seek(seconds){
@@ -177,3 +158,23 @@ function changeVideo(videoId){
 }
 
 
+fetch(`/possessions/${gameNo}`).then((response)=> (response.json())).then(
+    (data) => {
+        POSSESSIONS = data.possessions;
+        console.log(POSSESSIONS)
+        loadYoutubeIframe()
+    }
+)
+
+// Button Listeners
+function loadYoutubeIframe(){
+    console.log('loadYoutubeIframe called')
+    let leftButton = document.getElementById('left-button')
+    leftButton.addEventListener('click',(ev) => shiftPossession(-1,true))
+    let rightButton = document.getElementById('right-button')
+    rightButton.addEventListener('click',(ev) => shiftPossession(1,true))
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+}
