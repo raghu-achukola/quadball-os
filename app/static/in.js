@@ -119,6 +119,7 @@ function onYouTubeIframeAPIReady() {
     )
 }
 function onPlayerReady(evt){
+    console.log(evt)
     player.loadVideoById(filmID)
     console.log(player.getCurrentTime())
     console.log('opr');
