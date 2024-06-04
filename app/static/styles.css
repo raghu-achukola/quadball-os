@@ -7,8 +7,8 @@ body{
 }
 #possession-viewer-container{
     display: grid;
-    grid-template-columns: 90vw 10vw;
-    grid-template-rows: 90vh 10vh;
+    grid-template-columns: 95vw 5vw;
+    grid-template-rows: 95vh 5vh;
     grid-template-areas: "pv nt"
                          "pc nt";
     align-items: center;
@@ -18,7 +18,7 @@ body{
     display: grid;
     grid-area: pv;
     grid-template-columns: 5vw 20vw 10vw 20vw 10vw 20vw 5vw ;
-    grid-template-rows: 10vh 20vh 30vh 20vh 10vh;
+    grid-template-rows: 10vh 25vh 30vh 25vh 5vh;
     grid-template-areas:
                         "pn t1 s1 ti s2 t2 nc"
                         "nd xx xx xx xx xx ne"
