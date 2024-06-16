@@ -3,7 +3,9 @@ name: "pr-workflow"
 on:
   pull_request:
     branches:
-      - main
+      - main    
+    paths: 
+      - statsheet/**
 jobs:
   deploy-packages:
     name: "Deploy Packages"
