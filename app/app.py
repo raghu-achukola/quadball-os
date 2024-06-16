@@ -7,6 +7,7 @@ import re
 BUCKET = os.environ['QUADBALL_POSSESSIONS_BUCKET']
 POSSESSION_PREFIX = 'possessions/hydrated'
 METADATA_PREFIX = 'game-metadata'
+GAME_DESC_PATTERN = r'\((.*)\)\s*\[(.*)\]\s*(.*)'
 app = Flask(__name__)
 s3 = boto3.client('s3')
 
@@ -90,6 +91,25 @@ def determine_film_source(film_link:str) -> dict:
 def link_is_youtube(film_link:str): 
     YOUTUBE_PATTERN = r'.*(youtube)[.]com\/watch\?v\=([A-z0-9\-\_]+)'
     return re.match(YOUTUBE_PATTERN,film_link)
+
+
+@app.route('/possession-html')
+def get_game_html() :
+    desc =   s3.get_object(Bucket = BUCKET, Key = 'db/game_descriptions.csv')['Body'].read().decode('utf-8')
+    output = ''
+    for row in desc.split('\n')[1:]:
+        if not row.strip():
+            continue
+        _id,description = row.strip().split(',')
+        season, game_desc, result = re.match(GAME_DESC_PATTERN,description).groups()
+        output+=render_template('game_row.html',_id = _id, game_desc = game_desc, season= season, result = result)
+    return output
+
+@app.route('/possession-viewer')
+def game_viewer():
+    return render_template('game_dir.html')
+
+
 
 @app.route('/possession-viewer/<int:game_no>')
 def pview(game_no:int): 
