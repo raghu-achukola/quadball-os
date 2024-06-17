@@ -6,6 +6,7 @@ on:
       - main
     paths: 
       - app/**
+      - routing/**
 jobs:
   deploy-webapp:
     name: "Deploy webapp"
@@ -23,3 +24,7 @@ jobs:
 
       - name: Deploy webapp
         run: bash shell/deploy-app.sh
+        
+      # TODO: .. handle this only if routing changes (much rarer)
+      - name: Reroute 
+        run: bash shell/reroute-app.sh
