@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths: 
+      - statsheet/**
 jobs:
   deploy-packages:
     name: "Deploy Packages"

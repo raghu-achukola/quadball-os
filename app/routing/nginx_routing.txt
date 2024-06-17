@@ -1,0 +1,38 @@
+upstream flaskqviewer {
+    server 127.0.0.1:8000;
+}
+
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /var/www/html;
+
+	server_name _;
+
+	location / {
+		proxy_pass http://flaskqviewer;
+		try_files $uri $uri/ =404;
+	}
+	location /possession-viewer{
+		proxy_pass http://flaskqviewer;
+		root /possession-viewer;
+	}
+	location /static{
+		proxy_pass http://flaskqviewer;
+		root /static;
+	}
+	location /possession{
+		proxy_pass http://flaskqviewer;
+		root /possession ;
+	}
+	location /metadata{
+		proxy_pass http://flaskqviewer;
+		root /metadata;
+	}
+	location /possession-html{
+		proxy_pass http://flaskqviewer;
+		root /possession-html;
+	}
+
+}
