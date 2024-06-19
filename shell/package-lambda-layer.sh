@@ -1,7 +1,7 @@
 # To run from root of folder
 mkdir python
 cd ${2}
-pip install -r requirements.txt -t ../python/
+pip install -r requirements.txt -t ../python/ --platform manylinux2010_x86_64 --only-binary=:all:
 cp -r . ../python/${2}/
 cd ..
 zip -r ${1}-layer.zip python/
