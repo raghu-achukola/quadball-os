@@ -1,4 +1,4 @@
-name: "Terraform-Plan"
+name: "infra-pr-workflow"
 
 on:
   pull_request:
