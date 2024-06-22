@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  quadball-processing
+
+  Sample SAM Template for quadball-processing
+
+Globals:
+  Function:
+    Timeout: 3
+    MemorySize: 128
+
+Resources:
+  StatsheetLandingBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: quadball-os-statsheet-landing
+  StatsheetParserFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: statsheet_parser/
+      Handler: parser.lambda_handler
+      Runtime: python3.9
+      Architectures:
+        - x86_64
+      Environment:
+        Variables:
+          REFRESH_LAMBDA: !Ref RefreshDataLakeFunction
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: 'Allow'
+              Action: 's3:GetObject'
+              Resource: arn:aws:s3:::quadball-os-statsheet-landing
+        - LambdaInvokePolicy:
+            FunctionName: !Ref RefreshDataLakeFunction
+        - arn:aws:iam::765351438123:policy/quadball-statsheet-data-writer
+      Layers:
+        - arn:aws:lambda:us-west-2:765351438123:layer:statsheet:23 # TODO: figure out some way to do #latest lmao 
+        - arn:aws:lambda:us-west-2:336392948345:layer:AWSSDKPandas-Python39:21
+      Events:
+        S3Event:
+          Type: S3
+          Properties:
+            Bucket: !Ref StatsheetLandingBucket
+            Events: s3:ObjectCreated:*
+  RefreshDataLakeFunction:
+      Type: AWS::Serverless::Function 
+      Environment:
+        SNOWFLAKE_CREDS_SECRET: prod/snowflake/aws_svc
+      Properties:
+        CodeUri: refresh_data_lake/
+        Handler: main.lambda_handler
+        Runtime: python3.9
+        Architectures:
+          - x86_64
+        Policies:
+          - arn:aws:iam::765351438123:policy/aws_svc_prod_snowflake_access
+        Layers:
+          - arn:aws:lambda:us-west-2:765351438123:layer:snowflake:8
