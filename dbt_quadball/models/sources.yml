@@ -1,0 +1,18 @@
+version: 2
+
+sources: 
+  - name: stable
+    database: quadball
+    schema: stable
+    tables: 
+      - name: league
+      - name: season
+      - name: tournament
+      - name: team
+      - name: player
+      - name: game
+  - name: staging
+    database: quadball
+    schema: staging
+    tables: 
+      - name: possessions
