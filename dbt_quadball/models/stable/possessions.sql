@@ -5,11 +5,6 @@ select game_id,
 possession:extras::array  as extras,
 possession:film_timestamp as film_timestamp,
 possession:offense::string as offense, 
-case 
-    when offense = 'A' then 'B'
-    when offense = 'B' then 'A'
-    else null 
-end     as defense, 
 possession:result::string as result,
 possession:primary::array as primary_players, 
 possession:secondary::array as secondary_players, 
