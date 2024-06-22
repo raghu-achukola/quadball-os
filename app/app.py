@@ -4,7 +4,7 @@ import json
 import boto3
 import os
 import re 
-BUCKET = os.environ['QUADBALL_POSSESSIONS_BUCKET']
+BUCKET = os.environ['QUADBALL_DATA_LAKE_BUCKET']
 POSSESSION_PREFIX = 'possessions/hydrated'
 METADATA_PREFIX = 'game-metadata'
 GAME_DESC_PATTERN = r'\((.*)\)\s*\[(.*)\]\s*(.*)'

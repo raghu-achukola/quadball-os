@@ -9,7 +9,7 @@ sm = boto3.client('secretsmanager',region_name = 'us-west-2')
 conn_kwargs = json.loads(sm.get_secret_value(SecretId = creds_secret)['SecretString'])
 
 WH_QUERY = "use warehouse compute_wh"
-QUERY = "call quadball.reporting.refresh_data_lake();"
+QUERY = "call quadball.reporting.refresh_data_lake_v2();"
 
 def lambda_handler(event, context):
     conn = snowcon.connect(**conn_kwargs)

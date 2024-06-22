@@ -14,7 +14,7 @@ from statsheet.statsheet import *
 from statsheet.handler import StatsheetHandler
 import os
 
-MAIN_BUCKET = 'quadball-os-processed-statsheet-data'
+MAIN_BUCKET = os.environ['DATA_LAKE_BUCKET']
 REFRESH_LAMBDA_NAME = os.environ.get('REFRESH_LAMBDA','quadball-data-lake-refresh')
 
 
