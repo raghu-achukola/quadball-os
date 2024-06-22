@@ -1,15 +1,6 @@
-Welcome to your new dbt project!
+### Quadball DBT
 
-### Using the starter project
+DBT project to generate analytical views in Snowflake
+DBT + Snowflake is ~~probably~~ _definitely_ overkill for the task at hand,  but at our scale and infrequent usage, costs should stay low, and the ability during development to quickly iterate with confidence is useful. 
 
-Try running the following commands:
-- dbt run
-- dbt test
-
-
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+We will use this to also ensure that our data's referential integrity is maintained through many manual statsheet entries. 
