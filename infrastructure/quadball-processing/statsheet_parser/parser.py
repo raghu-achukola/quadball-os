@@ -12,8 +12,10 @@ from io import BytesIO
 
 from statsheet.statsheet import *
 from statsheet.handler import StatsheetHandler
+import os
 
 MAIN_BUCKET = 'quadball-os-processed-statsheet-data'
+REFRESH_LAMBDA_NAME = os.environ.get('REFRESH_LAMBDA','quadball-data-lake-refresh')
 
 
 s3 = boto3.client('s3')
@@ -73,7 +75,7 @@ def lambda_handler(event, context):
         process_record(record)
     print("ALL Files processed - Invoking SF data lake refresh")
     lbd.invoke(
-        FunctionName = 'quadball-data-lake-refresh',
+        FunctionName = REFRESH_LAMBDA_NAME,
         InvocationType = 'RequestResponse',                  # necessary?
         Payload = json.dumps({}).encode('utf-8')
     )
