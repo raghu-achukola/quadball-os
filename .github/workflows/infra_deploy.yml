@@ -51,7 +51,11 @@ jobs:
         working-directory: ./infrastructure/quadball-processing
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2      
+        - name: Setup Python
+          uses: actions/setup-python@v5
+          with: 
+            python-version: '3.9'
       - name: Setup Sam
         uses: aws-actions/setup-sam@v1
       - name: Configure AWS CREDS
