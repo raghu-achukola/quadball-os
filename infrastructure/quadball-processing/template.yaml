@@ -15,10 +15,11 @@ Resources:
     Type: AWS::Serverless::Function 
     Properties:
       CodeUri: statsheet_parser/
-      Handler: app.lambda_handler
+      Handler: parser.lambda_handler
       Runtime: python3.9
       Architectures:
         - x86_64
       Layers:
-        - arn:aws:lambda:us-west-2:765351438123:layer:statsheet:28 # TODO: figure out some way to do #latest lmao 
-    
+        - arn:aws:lambda:us-west-2:765351438123:layer:statsheet:23 # TODO: figure out some way to do #latest lmao 
+        - arn:aws:lambda:us-west-2:336392948345:layer:AWSSDKPandas-Python39:21
+
