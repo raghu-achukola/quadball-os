@@ -7,26 +7,51 @@ on:
     paths: 
       - infrastructure/**
 jobs:
-  terraform-plan:
-    name: "Terraform Plan"
+  # TODO: reinstate
+  # terraform-plan:
+  #   name: "Terraform Plan"
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     AWS_ACCESS_KEY_ID: ${{ secrets.ADMIN_AWS_KEY_ID }}
+  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.ADMIN_AWS_SECRET_KEY }}
+  #     AWS_REGION: us-west-2
+
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+
+  #     - name: Setup Terraform
+  #       uses: hashicorp/setup-terraform@v2
+      
+
+  #     - name: Terraform Init
+  #       id: init
+  #       run: cd infrastructure && terraform init
+      
+  #     - name: Terraform plan
+  #       id: plan
+  #       run: cd infrastructure && terraform plan
+
+ aws-sam:
+    name: "AWS SAM Deploy"
     runs-on: ubuntu-latest
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.ADMIN_AWS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.ADMIN_AWS_SECRET_KEY }}
       AWS_REGION: us-west-2
-
+    defaults:
+      run:
+        working-directory: ./infrastructure/quadball-processing
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
-      
-
-      - name: Terraform Init
-        id: init
-        run: cd infrastructure && terraform init
-      
-      - name: Terraform plan
-        id: plan
-        run: cd infrastructure && terraform plan
+      - name: Setup Sam
+        uses: aws-actions/setup-sam@v1
+      - name: Configure AWS CREDS
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.ADMIN_AWS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.ADMIN_AWS_SECRET_KEY }}
+          aws-region: us-west-2
+      - name: Build
+        run: sam build
