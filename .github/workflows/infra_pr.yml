@@ -33,7 +33,7 @@ jobs:
   #       run: cd infrastructure && terraform plan
 
  aws-sam:
-    name: "AWS SAM Deploy"
+    name: "AWS SAM Build"
     runs-on: ubuntu-latest
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.ADMIN_AWS_KEY_ID }}
